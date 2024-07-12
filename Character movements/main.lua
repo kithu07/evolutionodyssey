@@ -12,7 +12,6 @@ function love.load()
     player.spritesheet = love.graphics.newImage("sprites/characters.png")
     player.grid = anim8.newGrid(32, 30, player.spritesheet:getWidth(), player.spritesheet:getHeight())
 
-
     player.animations = {}
     player.animations.right = anim8.newAnimation(player.grid('1-4', 1), 0.1)
     player.animations.left = player.animations.right:clone():flipH()
@@ -28,7 +27,6 @@ function love.update(dt)
         player.anim = player.animations.right
         ismoving = true
     end
-    
     if love.keyboard.isDown("left") then
         player.x = player.x - player.speed
         player.anim = player.animations.left
