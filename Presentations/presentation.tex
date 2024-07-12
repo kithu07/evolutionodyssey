@@ -1,0 +1,141 @@
+\documentclass[pdf]{beamer}
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+\usetheme{AnnArbor}
+
+\title{Evolution Odyssey}
+\author{HelloWorld}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Content}
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\begin{itemize}
+    \normalsize\upshape
+    \item Game Description
+    \item Timeline
+    \item Tech Stack
+    \item Work Division
+    \item Future Scope
+\end{itemize}
+\end{column}
+
+\begin{column}{0.3\textwidth}
+    \includegraphics[scale = 0.5] {monkey.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Game Description} 
+\begin{columns}
+\begin{column}{0.7\textwidth}
+    The game is an evolution-themed 2D platformer built using
+     Lua and LÖVE2D. It starts with a monkey in a forest
+    collecting bananas while avoiding obstacles.
+    As the player progresses, the environment changes to a
+    street, and the character evolves into a human 
+    collecting money. The goal is to collect as many 
+    items as possible while avoiding obstacles, with the
+    player's score tracked and displayed at the end of 
+    each game session. If the player achieves a new high
+    score, it is updated and displayed.
+\end{column}
+
+\begin{column}{0.3\textwidth}
+    \includegraphics[scale = 0.5] {money.jpeg}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Timeline - Week 1 (9 July - 15 July 2024)}
+    \LARGE\itshape Set Up Project
+    \begin{itemize}
+        \normalsize\upshape
+        \item Install LÖVE2D and set up the development 
+        environment.
+        \item Create the basic game structure
+         and main game loop.
+    \end{itemize}
+
+    \LARGE\itshape Level 1: Monkey in Forest
+    \begin{itemize}
+        \normalsize\upshape
+        \item Implement player controls and movement.
+        \item Add banana collection and score increment.
+        \item Add obstacles (spikes) and collision detection.
+        \item Implement the lives system and game over condition.
+    \end{itemize}
+
+    \LARGE\itshape Transition to Level 2
+    \begin{itemize}
+        \normalsize\upshape
+        \item Add a simple level transition mechanism.
+        \item Implement background changes.
+    \end{itemize}
+\end{frame}
+    
+\begin{frame}{Timeline - Week 2 (16 July - 23 July 2024)}
+    \LARGE\itshape Level 2: Human on Street
+    \begin{itemize}
+        \normalsize\upshape
+        \item Implement player controls and movement.
+        \item Add money collection and score increment
+        \item Add money collection and score increment
+        \item Implement environment changes as money is collected.
+    \end{itemize}  
+
+    \LARGE\itshape High Score Display and Persistence
+    \begin{itemize}
+        \normalsize\upshape
+        \item Implement score saving/loading using a local file.
+        \item Add a high score display and update mechanism.
+    \end{itemize} 
+    
+    \LARGE\itshape Polishing
+    \begin{itemize}
+        \normalsize\upshape
+        \item Improve graphics and add animations.
+        \item Add sound effects and background music.
+        \item Test and debug the game thoroughly.
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}{Tech Stack}
+\begin{itemize}
+    \item Lua : Main programming language for game logic.
+    \item LÖVE2D : Framework for 2D game development.
+    \item Graphics Tools : For creating and manipulating game sprites and backgrounds.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Work Division}
+    \begin{itemize}
+        \item Keerthana DS - Score and life tracker, music and sounds.
+        \item Devika - Element assets, Animation.
+        \item Keerthana AR - Background, Obstruction detection and handling.
+        \item Janeeta - Home page, Panel bar, score board.
+    \end{itemize} 
+
+\end{frame}
+
+
+\begin{frame}{Future Scope}
+    \begin{itemize}
+        \item Additional Levels: Introduce more levels with different environments 
+        and evolving characters.
+        \item Multiplayer Mode: Allow players to compete against each other in real-time.
+        \item Power-Ups: Add power-ups that provide temporary advantages to the player.
+        \item Achievements: Introduce achievements for players to unlock based on 
+        their performance.
+        \item Mobile Version: Adapt the game for mobile platforms to reach a wider audience.
+    \end{itemize}
+\end{frame}
+
+\end{document}
+
