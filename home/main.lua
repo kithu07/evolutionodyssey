@@ -6,7 +6,7 @@ function love.load()
     soundOnIcon = love.graphics.newImage("assets/sound-on.png")
     soundOffIcon = love.graphics.newImage("assets/sound-off.png")
     backgroundMusic = love.audio.newSource("assets/music.mp3", "stream")
-
+    backgroundMusic:setLooping(true)
     font = love.graphics.newFont(24)
     
     local titleY = title:getHeight() - 190
@@ -23,7 +23,8 @@ function love.load()
         y = 20,
         width = 24,  
         height = 24,  
-        on = true  
+        on = true,
+        backgroundMusic:play()  
     }
 
   
