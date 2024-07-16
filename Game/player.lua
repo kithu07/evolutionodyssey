@@ -13,7 +13,11 @@ function Player:load()
     self.gravity = 1500
     self.jumpAmount = -500
 
+    self.graceTime = 0
+    self.graceDuration = 0.1
+
     self.grounded = false
+    self.hasDoubleJump = true
 
     self.physics = {}
     self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
@@ -26,6 +30,13 @@ function Player:update(dt)
     self:syncPhysics()
     self:move(dt)
     self:applyGravity(dt)
+    self:decreaseGraceTime(dt)
+end
+
+function Player:decreaseGraceTime(dt)
+    if not self.grounded then
+        self.graceTime = self.graceTime - dt
+    end
 end
 
 function Player:applyGravity(dt)
@@ -95,12 +106,20 @@ function Player:land(collision)
     self.currentGroundCollision = collision
     self.yVel = 0
     self.grounded = true
+    self.hasDoubleJump = true
+    self.graceTime = self.graceDuration
 end
 
 function Player:jump(key)
     if key == "space" then
-        self.yVel = self.jumpAmount
-        self.grounded = false
+        if self.grounded or self.graceTime > 0 then
+            self.yVel = self.jumpAmount
+            self.grounded = false
+            self.graceTime = 0
+        elseif self.hasDoubleJump then
+            self.hasDoubleJump = false
+            self.yVel = self.jumpAmount * 0.8
+        end
     end
 end
 
