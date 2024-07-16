@@ -13,6 +13,8 @@ function Player:load()
     self.gravity = 1500
     self.jumpAmount = -500
 
+    self.coins = 0
+
     self.graceTime = 0
     self.graceDuration = 0.1
 
@@ -133,4 +135,8 @@ end
 
 function Player:draw()
     love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2, self.width, self.height )
+end
+
+function Player: incrementCoins()
+    self.coins = self.coins +1
 end
