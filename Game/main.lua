@@ -1,6 +1,7 @@
 _G.love = require("love")
 local STI = require("libraries/sti")
-require "player"
+require ("player")
+require("coin")
 function love.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Map = STI("maps/lvl1.lua", {"box2d"})
@@ -12,11 +13,16 @@ function love.load()
 
     Player:load()
 
+    Coin.new(300, 200)
+    Coin.new(400, 300)
+    Coin.new(500, 200)
+
 end
 
 function love.update(dt)
     World:update(dt)
     Player:update(dt)
+    Coin: updateAll(dt)
     
 end
 
@@ -24,6 +30,8 @@ function love.draw()
     Map:draw(0, 0)
     
     Player:draw()
+
+    Coin: drawAll()
     
 end
 
