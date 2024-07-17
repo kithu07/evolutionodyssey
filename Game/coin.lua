@@ -15,7 +15,11 @@ function Coin.new(x, y)
     instance.timeOffset = math.random(1,100)
     instance.physics ={}
         instance.physics.body = love.physics.newBody(World, instance.x, instance.y, "static")
+<<<<<<< HEAD
         instance.physics.shape = love.physics.newRectangleShape(instance.width, instance.height)
+=======
+        instance.physics.shape = love.physics.shape.newRectangleShape(instance.width, instance.height)
+>>>>>>> 82f89da991b20bdf348ebb90174ad48550e485fb
         instance.physics.fixture= love.physics.newFixture(instance.physics.body, instance.physics.shape)
     
     instance.physics.fixture: setSensor(true)
