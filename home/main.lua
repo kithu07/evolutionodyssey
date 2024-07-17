@@ -7,6 +7,7 @@ function love.load()
     soundOffIcon = love.graphics.newImage("assets/sound-off.png")
     backgroundMusic = love.audio.newSource("assets/music.mp3", "stream")
     backgroundMusic:setLooping(true)
+
     font = love.graphics.newFont(24)
     
     local titleY = title:getHeight() - 190
@@ -19,7 +20,7 @@ function love.load()
     }
 
     soundButton = {
-        x = love.graphics.getWidth() - soundOnIcon:getWidth() - 20,  -- Right align with padding
+        x = love.graphics.getWidth() - soundOnIcon:getWidth() - 20,  
         y = 20,
         width = 24,  
         height = 24,  
@@ -66,7 +67,7 @@ function love.mousepressed(x, y, button, istouch, presses)
 
     if button == 1 and x >= playButton.x and x <= playButton.x + playButton.width and
     y >= playButton.y and y <= playButton.y + playButton.height then
-        startGame()
+        goToGamePage()
     end
 
     if button == 1 and x >= soundButton.x and x <= soundButton.x + soundButton.width and
@@ -80,18 +81,10 @@ end
 function toggleSound()
     soundButton.on = not soundButton.on
     if soundButton.on then
-        backgroundMusic:play()  -- Start playing music
+        backgroundMusic:play() 
     else
-        backgroundMusic:stop()  -- Stop playing music
+        backgroundMusic:stop()  
     end
 end
 
-function startGame()
-     -- Load and execute game.lua
-     local gameChunk = love.filesystem.load("game.lua")
-     if gameChunk then
-         gameChunk()  -- Execute the chunk (which is the contents of game.lua)
-     else
-         print("Error loading game.lua")
-     end
-end
+
