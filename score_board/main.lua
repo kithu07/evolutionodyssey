@@ -64,17 +64,6 @@ function love.mousepressed(x, y, button, istouch, presses)
         goToGamePage()
         
     elseif x >= homeButton.x and x <= homeButton.x + homeButton.width and y >= homeButton.y and y <= homeButton.y + homeButton.height then
- -- Go to home page (menu screen)
         goToHomePage()
     end
-end
-
-function goToGamePage()
-    love.filesystem.load("game.lua")()
-        love.load()
-end
-
-function goToHomePage()
-    --love.filesystem.load("home.lua")()
-        love.load()
 end
