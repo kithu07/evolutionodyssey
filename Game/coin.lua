@@ -68,6 +68,7 @@ function Coin: collect()
     for i, instance in ipairs(CollectableCoins) do
         if instance == self then
             Player: incrementCoins()
+            print(Player.coins)
             self.physics.body:destroy()
             table.remove(CollectableCoins, i)
         end

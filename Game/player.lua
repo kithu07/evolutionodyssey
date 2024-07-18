@@ -201,3 +201,7 @@ function Player:loadAssets()
     local scale = 2
     love.graphics.draw(self.animation.draw, self.x, self.y, 0, scaleX * scale, scale, self.animation.width / 2, self.animation.height / 2)
  end
+
+ function Player: incrementCoins()
+   self.coins = self.coins +1
+end

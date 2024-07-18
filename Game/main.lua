@@ -3,6 +3,8 @@ local STI = require("Game.libraries/sti")
 require ("Game.player")
 require("Game.coin")
 love.graphics.setDefaultFilter("nearest", "nearest")
+require("Game.gui")
+
 function love.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Map = STI("Game/maps/lvl1.lua", {"box2d"})
@@ -12,6 +14,8 @@ function love.load()
     Map.layers.solids.visible = false
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Player:load()
+
+    GUI:load()
 
     Coin.new(440, 500)
     Coin.new(550, 300)
@@ -23,6 +27,7 @@ function love.update(dt)
     World:update(dt)
     Player:update(dt)
     Coin: updateAll(dt)
+    GUI:update(dt)
     
 end
 
@@ -32,6 +37,8 @@ function love.draw()
     Player:draw()
 
     Coin: drawAll()
+
+    GUI:draw()
     
 end
 
