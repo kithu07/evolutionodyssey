@@ -17,5 +17,5 @@ function goToScoreboard()
 end
 
 function goToGamePage()
-    loadModule("game/game.lua")
+    loadModule("Game/main.lua")
 end
