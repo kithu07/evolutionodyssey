@@ -7,7 +7,7 @@ function Coin.new(x, y)
     local instance = setmetatable({}, Coin)  
     instance.x = x
     instance.y = y
-    instance.img = love.graphics.newImage("Game/sprites/Coin1.png")
+    instance.img = love.graphics.newImage("sprites/Coin1.png")
     instance.width = instance.img:getWidth()
     instance.height = instance.img:getHeight()
     instance.rotationValue=1
