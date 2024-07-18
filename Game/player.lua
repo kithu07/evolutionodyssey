@@ -38,17 +38,17 @@ function Player:loadAssets()
  
     self.animation.jump= {total = 4, current = 1, img = {}}
     for i=1, self.animation.jump.total do
-       self.animation.jump.img[i] = love.graphics.newImage("sprites/player/jump/"..i..".png")
+       self.animation.jump.img[i] = love.graphics.newImage("Game/sprites/player/jump/"..i..".png")
     end
  
     self.animation.idle= {total = 4, current = 1, img = {}}
     for i=1, self.animation.idle.total do
-       self.animation.idle.img[i] = love.graphics.newImage("sprites/player/idle/"..i..".png")
+       self.animation.idle.img[i] = love.graphics.newImage("Game/sprites/player/idle/"..i..".png")
     end
 
     self.animation.walk = {total = 4, current = 1, img = {}}
     for i=1, self.animation.walk.total do
-       self.animation.walk.img[i] = love.graphics.newImage("sprites/player/walk/"..i..".png")
+       self.animation.walk.img[i] = love.graphics.newImage("Game/sprites/player/walk/"..i..".png")
     end
  
    
