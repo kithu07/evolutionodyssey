@@ -28,7 +28,7 @@ function Coin:update(dt)
 end
 
 function Coin:checkRemove()
-    if toRemove then
+    if self.toRemove then
         self:collect()
     end
 end
