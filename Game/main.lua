@@ -13,9 +13,9 @@ function love.load()
 
     Player:load()
 
-    Coin.new(300, 200)
-    Coin.new(400, 300)
-    Coin.new(500, 200)
+    Coin.new(440, 500)
+    Coin.new(550, 300)
+    Coin.new(660, 355)
 
 end
 
