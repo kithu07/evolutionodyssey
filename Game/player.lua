@@ -6,12 +6,12 @@ function Player:load()
     self.width = 20
     self.height = 60
     self.xVel = 0
-    self.yVel = 100
+    self.yVel = 200
     self.maxSpeed = 200
     self.acceleration = 4000
     self.friction = 3500
     self.gravity = 1500
-    self.jumpAmount = -500
+    self.jumpAmount = -800
 
     self.coins = 0
 
