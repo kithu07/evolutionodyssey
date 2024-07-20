@@ -11,7 +11,7 @@ function Player:load()
     self.acceleration = 4000
     self.friction = 3500
     self.gravity = 1500
-    self.jumpAmount = -800
+    self.jumpAmount = -500
 
     self.coins = 0
 
@@ -117,9 +117,9 @@ function Player:loadAssets()
  end
  
  function Player:move(dt)
-    if love.keyboard.isDown("d", "right") then
+    if love.keyboard.isDown("right") then
        self.xVel = math.min(self.xVel + self.acceleration * dt, self.maxSpeed)
-    elseif love.keyboard.isDown("a", "left") then
+    elseif love.keyboard.isDown("left") then
        self.xVel = math.max(self.xVel - self.acceleration * dt, -self.maxSpeed)
     else
        self:applyFriction(dt)
@@ -174,7 +174,7 @@ function Player:loadAssets()
  end
  
  function Player:jump(key)
-    if (key == "w" or key == "up") then
+    if (key == "space") then
        if self.grounded or self.graceTime > 0 then
           self.yVel = self.jumpAmount
           self.graceTime = 0

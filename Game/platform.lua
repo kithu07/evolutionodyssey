@@ -1,10 +1,12 @@
-local STI = require("libraries/sti")
+local STI = require("Game.libraries/sti")
 
 _G.platform = {}
 
 function platform.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
-    platform.map = STI("maps/final.lua", {"box2d"})
+
+    platform.map = STI("Game.maps/final.lua", {"box2d"})
+
     platform.World = love.physics.newWorld(0,0)
     platform.map:box2d_init(platform.World)
     platform.map.layers.solid.visible = false
