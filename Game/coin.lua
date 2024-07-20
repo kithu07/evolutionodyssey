@@ -7,7 +7,7 @@ function Coin.new(x, y)
     local instance = setmetatable({}, Coin)  
     instance.x = x
     instance.y = y
-    instance.img = love.graphics.newImage("sprites/Coin1.png")
+    instance.img = love.graphics.newImage("Game/sprites/Coin1.png")
     instance.width = instance.img:getWidth()
     instance.height = instance.img:getHeight()
     instance.rotationValue=1
@@ -28,7 +28,7 @@ function Coin:update(dt)
 end
 
 function Coin:checkRemove()
-    if toRemove then
+    if self.toRemove then
         self:collect()
     end
 end
@@ -68,6 +68,7 @@ function Coin: collect()
     for i, instance in ipairs(CollectableCoins) do
         if instance == self then
             Player: incrementCoins()
+            print(Player.coins)
             self.physics.body:destroy()
             table.remove(CollectableCoins, i)
         end

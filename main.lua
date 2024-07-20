@@ -3,9 +3,13 @@ function love.load()
 end
 
 function loadModule(module)
-    if love.unload then love.unload() end
+    if love.unload then 
+        love.unload() 
+    end
     love.filesystem.load(module)()
-    if love.load then love.load() end
+    if love.load then 
+        love.load() 
+    end
 end
 
 function goToHomePage()
