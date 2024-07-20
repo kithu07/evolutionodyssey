@@ -13,7 +13,7 @@ function love.load()
     World:setCallbacks(beginContact, endContact)
     Map:box2d_init(World)
     Map.layers.solids.visible = false
-    MapWidth = Map.layers.background.width  * 16
+    MapWidth = Map.layers.elements.width  * 16
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Player:load()
 
