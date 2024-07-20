@@ -4,6 +4,7 @@ require ("Game.player")
 require("Game.coin")
 love.graphics.setDefaultFilter("nearest", "nearest")
 require("Game.gui")
+local Camera=require ("Game.camera")
 
 function love.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
@@ -12,6 +13,7 @@ function love.load()
     World:setCallbacks(beginContact, endContact)
     Map:box2d_init(World)
     Map.layers.solids.visible = false
+    MapWidth = Map.layers.Tile_Layer_2.width  * 16
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Player:load()
 
@@ -28,18 +30,16 @@ function love.update(dt)
     Player:update(dt)
     Coin: updateAll(dt)
     GUI:update(dt)
-    
+    Camera:setPosition(Player.x, 0)
 end
 
 function love.draw()
-    Map:draw(0, 0)
-    
+    Map:draw(-Camera.x, -Camera.y, Camera.scale, Camera.scale)
+    Camera:apply()   
     Player:draw()
-
     Coin: drawAll()
-
     GUI:draw()
-    
+    Camera:clear()
 end
 
 function love.keypressed(key)

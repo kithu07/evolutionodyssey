@@ -47,7 +47,7 @@ return {
       width = 80,
       height = 38,
       id = 2,
-      name = "Tile Layer 2",
+      name = "Tile_Layer_2",
       visible = true,
       opacity = 1,
       offsetx = 0,
