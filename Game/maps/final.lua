@@ -8,8 +8,8 @@ return {
   height = 38,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 4,
-  nextobjectid = 15,
+  nextlayerid = 5,
+  nextobjectid = 16,
   properties = {},
   tilesets = {
     {
@@ -47,7 +47,7 @@ return {
       width = 80,
       height = 38,
       id = 2,
-      name = "Tile_Layer_2",
+      name = "background",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -98,13 +98,41 @@ return {
       }
     },
     {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
+      name = "entity",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 15,
+          name = "Enemy",
+          type = "enemy",
+          shape = "point",
+          x = 624.334,
+          y = 416.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
       type = "tilelayer",
       x = 0,
       y = 0,
       width = 80,
       height = 38,
       id = 1,
-      name = "Tile Layer 1",
+      name = "elements",
       visible = true,
       opacity = 1,
       offsetx = 0,
