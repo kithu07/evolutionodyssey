@@ -3,6 +3,8 @@ Player = {}
 function Player:load()
     self.x = 100
     self.y = 0
+    self.startX = self.x
+    self.startY = self.y
     self.width = 20
     self.height = 60
     self.xVel = 0
@@ -14,7 +16,7 @@ function Player:load()
     self.jumpAmount = -500
 
     self.coins = 0
-
+    self.health = {current = 1, max = 1}
     self.graceTime = 0
     self.graceDuration = 0.1
 
@@ -29,7 +31,7 @@ function Player:load()
     self.physics = {}
     self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
     self.physics.body:setFixedRotation(true)
-    self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
+    self.physics.shape = love.physics.newRectangleShape(self.width*0.4, self.height*0.75)
     self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
 end
 
@@ -58,7 +60,27 @@ function Player:loadAssets()
     self.animation.height = self.animation.draw:getHeight()
  end
 
+ function Player:takeDamage(amount)
+   if self.health.current - amount == 0 then
+      self:die()
+   end
+end
+
+function Player:die()
+   print("Player died")
+   self.alive = false
+end
+
+function Player:respawn()
+   if self.alive==false then
+      self.physics.body:setPosition(self.startX, self.startY)
+      self.health.current = self.health.max
+      self.alive = true
+   end
+end
+
  function Player:update(dt)
+   self:respawn()
     self:setState()
     self:setDirection()
     self:animate(dt)
@@ -205,3 +227,5 @@ function Player:loadAssets()
  function Player: incrementCoins()
    self.coins = self.coins +1
 end
+
+return Player
