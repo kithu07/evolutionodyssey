@@ -1,31 +1,30 @@
 _G.love = require("love")
 local STI = require("Game.libraries/sti")
 require ("Game.player")
-local Enemy=require ("Game.enemy")
-World = love.physics.newWorld(0,0)
 require("Game.coin")
 love.graphics.setDefaultFilter("nearest", "nearest")
 require("Game.gui")
 local Camera=require ("Game.camera")
-
+local Enemy=require ("Game.enemy")
 
 function love.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Map = STI("Game/maps/final.lua", {"box2d"})
-    MapWidth = Map.layers.elements.width  * 16
+    World = love.physics.newWorld(0,2000)
     World:setCallbacks(beginContact, endContact)
     Map:box2d_init(World)
     Map.layers.solids.visible = false
     Map.layers.entity.visible = false
+    MapWidth = Map.layers.elements.width  * 16
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
     Player:load()
     Enemy.loadAssets()
-    Enemy.new(700,430)
     GUI:load()
 
     Coin.new(440, 500)
     Coin.new(550, 300)
     Coin.new(660, 355)
+    Enemy.new(700,430)
 
 end
 
@@ -33,7 +32,7 @@ function love.update(dt)
     World:update(dt)
     Player:update(dt)
     Coin: updateAll(dt)
-    Enemy.updateAll(love.timer.getDelta())
+    Enemy.updateAll(dt)
     GUI:update(dt)
     Camera:setPosition(Player.x, 0)
 end
@@ -43,7 +42,7 @@ function love.draw()
     Camera:apply()   
     Player:draw()
     Coin: drawAll()
-    Enemy:drawAll()
+    Enemy.drawAll()
     GUI:draw()
     Camera:clear()
 end

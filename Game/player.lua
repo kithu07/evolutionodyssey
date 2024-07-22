@@ -1,10 +1,11 @@
 Player = {}
 
 function Player:load()
+    
     self.x = 100
     self.y = 0
     self.startX = self.x
-    self.startY = self.y
+    self.startY = self.y 
     self.width = 20
     self.height = 60
     self.xVel = 0
@@ -31,8 +32,9 @@ function Player:load()
     self.physics = {}
     self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
     self.physics.body:setFixedRotation(true)
-    self.physics.shape = love.physics.newRectangleShape(self.width*0.4, self.height*0.75)
+    self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
     self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
+    self.physics.body:setGravityScale(0)
 end
 
 function Player:loadAssets()

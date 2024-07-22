@@ -4,21 +4,11 @@ local Player = require("Game.player")
 
 local ActiveEnemies = {}
 
-function Enemy.removeAll()
-   for i,v in ipairs(ActiveEnemies) do
-      v.physics.body:destroy()
-   end
-
-   ActiveEnemies = {}
-end
-
 function Enemy.new(x,y)
    local instance = setmetatable({}, Enemy)
    instance.x = x
    instance.y = y
-   instance.offsetY = -8
    instance.r = 0
-
    instance.speed = 50
    instance.xVel = instance.speed
    instance.damage = 1
@@ -50,14 +40,12 @@ function Enemy.loadAssets()
 end
 
 function Enemy:update(dt)
-    self:animate(dt)
+   self:animate(dt)
    self:syncPhysics()
-   
 end
 
 function Enemy:flipDirection()
     self.xVel = -self.xVel
-    self.physics.body:setLinearVelocity(self.xVel , 0)
  end
 
 function Enemy:animate(dt)
@@ -79,10 +67,8 @@ function Enemy:setNewFrame()
 end
 
 function Enemy:syncPhysics()
-    
    self.x, self.y = self.physics.body:getPosition()
-   self.physics.body:setLinearVelocity(self.xVel , 0)
-   
+   self.physics.body:setLinearVelocity(self.xVel , 100)
 end
 
 function Enemy:draw()
@@ -90,7 +76,7 @@ function Enemy:draw()
    if self.xVel < 0 then
       scaleX = -1
    end
-   love.graphics.draw(self.animation.draw, self.x, self.y + self.offsetY, self.r, scaleX, 1, self.width / 2, self.height / 2)
+   love.graphics.draw(self.animation.draw, self.x, self.y , self.r, scaleX, 1, self.width / 2, self.height / 2)
 end
 
 function Enemy.updateAll(dt)
