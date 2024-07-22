@@ -18,7 +18,7 @@ function Enemy.new(x,y)
    instance.animation = {timer = 0, rate = 0.1}
    instance.animation.crawl = {total = 4, current = 1, img = Enemy.crawlAnim}
    instance.animation.draw = instance.animation.crawl.img[1]
-
+   instance.facingRight = true
    instance.physics = {}
    instance.physics.body = love.physics.newBody(World, instance.x, instance.y, "dynamic")
    instance.physics.body:setFixedRotation(true)
@@ -42,10 +42,12 @@ end
 function Enemy:update(dt)
    self:animate(dt)
    self:syncPhysics()
+   self:changeDirection()
 end
 
 function Enemy:flipDirection()
-    self.xVel = -self.xVel
+   self.facingRight = not self.facingRight
+   self.xVel = -self.xVel
  end
 
 function Enemy:animate(dt)
@@ -92,16 +94,21 @@ function Enemy.drawAll()
 end
 
 function Enemy.beginContact(a, b, collision)
-    for i,instance in ipairs(ActiveEnemies) do
-       if a == instance.physics.fixture or b == instance.physics.fixture then
-            if a == Player.physics.fixture or b == Player.physics.fixture then
-                Player:takeDamage(instance.damage)
-            end
-            instance:flipDirection()
-            
-            return
-       end
-    end
- end
+   local playerFixture = Player.physics.fixture
+   for i,instance in ipairs(ActiveEnemies) do
+      if (a == instance.physics.fixture and b == playerFixture) or (a == playerFixture and b == instance.physics.fixture) then
+         Player:takeDamage(instance.damage)
+      end
+   end
+end
+
+function Enemy:changeDirection()
+   local enemyX, enemyY = self.physics.body:getPosition()
+   if enemyX >= 820 and self.facingRight then
+      self:flipDirection()
+   elseif enemyX <=600 and not self.facingRight then
+      self:flipDirection()
+   end
+end
 
 return Enemy
