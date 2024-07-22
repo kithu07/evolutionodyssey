@@ -78,7 +78,7 @@ function Enemy:draw()
    if self.xVel < 0 then
       scaleX = -1
    end
-   love.graphics.draw(self.animation.draw, self.x, self.y , self.r, scaleX, 1, self.width / 2, self.height / 2)
+   love.graphics.draw(self.animation.draw, self.x, self.y-15, self.r, 2*scaleX, 2, self.width / 2, self.height / 2)
 end
 
 function Enemy.updateAll(dt)
