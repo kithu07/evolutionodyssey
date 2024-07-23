@@ -4,6 +4,16 @@ local Player = require("Game.player")
 
 local ActiveEnemies = {}
 
+function Enemy.removeAll()
+   for i,v in ipairs(ActiveEnemies) do
+      table.remove(ActiveEnemies, i)
+      v.physics.body:destroy()
+      
+   end
+
+   ActiveEnemies = {}
+end
+
 function Enemy.new(x,y)
    local instance = setmetatable({}, Enemy)
    instance.x = x

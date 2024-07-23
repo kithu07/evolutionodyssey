@@ -15,7 +15,7 @@ function Player:load()
    self.gravity = 1500
    self.jumpAmount = -500
    self.coins = 0
-   self.health = {current = 1, max = 1}
+   self.health = {current = 3, max = 3}
    self.graceTime = 0
    self.graceDuration = 0.1
 
@@ -61,27 +61,29 @@ function Player:loadAssets()
 end
 
 function Player:takeDamage(amount)
-   if self.health.current - amount == 0 then
-      self:die()
+   if self.health.current - amount > 0 then
+      self.health.current = self.health.current - amount
+      
+   else
+      self.health.current = 0
+      self.alive=false
    end
+   print("Player health: "..self.health.current)
 end
-
-function Player:die()
-   print("Player died")
-   self.alive = false
-end
-
+   
 function Player:respawn()
    if self.alive==false then
       self.physics.body:setPosition(self.startX, self.startY)
       self.health.current = self.health.max
       self.alive = true
+      goToScoreboard()
    end
 end
 
-function gameOver(showScoreboard)
-   if showScoreboard then
-      goToScoreboard()
+function Player:contactWater()
+   if Player.y >= 820 then
+      Player:takeDamage(1)
+      self.physics.body:setPosition(self.startX, self.startY)
    end
 end
 
@@ -94,9 +96,7 @@ function Player:update(dt)
    self:syncPhysics()
    self:move(dt)
    self:applyGravity(dt)
-   if Player.y >= 550 then
-      gameOver(true)
-   end
+   self:contactWater()
 end
 
 function Player:setState()
