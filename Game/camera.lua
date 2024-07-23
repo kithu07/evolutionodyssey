@@ -17,7 +17,7 @@ function Camera:setPosition(x, y)
     self.x = x - love.graphics.getWidth() / 2 / self.scale
     self.y = y
     local Right_side = self.x + love.graphics.getWidth() / 2
-
+    local MapWidth = 4800
     if self.x < 0 then
         self.x = 0
     elseif Right_side > MapWidth then
