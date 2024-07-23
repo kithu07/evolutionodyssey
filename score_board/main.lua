@@ -4,8 +4,8 @@ function love.load()
     background = love.graphics.newImage("assets/background.jpg")
     font = love.graphics.newFont(24)
     boardBackground = love.graphics.newImage("assets/brick_wall.jpg")
-    
-    boardColor = {1, 0.84, 0}  
+
+    boardColor = {1, 0.84, 0}
     -- Placeholder scores
     highScore = 100
     yourScore = 75
