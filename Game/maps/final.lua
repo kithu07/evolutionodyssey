@@ -301,7 +301,7 @@ return {
       draworder = "topdown",
       id = 3,
       name = "solids",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
