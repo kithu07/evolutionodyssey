@@ -1,10 +1,10 @@
-local Enemy = {}
-Enemy.__index = Enemy
+local Enemy_3 = {}
+Enemy_3.__index = Enemy_3
 local Player = require("Game.player")
 
 local ActiveEnemies = {}
 
-function Enemy.removeAll()
+function Enemy_3.removeAll()
    for i,v in ipairs(ActiveEnemies) do
       table.remove(ActiveEnemies, i)
       v.physics.body:destroy()
@@ -14,21 +14,22 @@ function Enemy.removeAll()
    ActiveEnemies = {}
 end
 
-function Enemy.new(x,y)
-   local instance = setmetatable({}, Enemy)
+function Enemy_3.new(x,y)
+   local instance = setmetatable({}, Enemy_3)
    instance.x = x
    instance.y = y
    instance.r = 0
-   instance.speed = 50
+   instance.speed = -50
    instance.xVel = instance.speed
    instance.damage = 1
+   instance.directionTimer = 0
 
    instance.state = "crawl"
 
    instance.animation = {timer = 0, rate = 0.1}
-   instance.animation.crawl = {total = 4, current = 1, img = Enemy.crawlAnim}
+   instance.animation.crawl = {total = 4, current = 1, img = Enemy_3.crawlAnim}
    instance.animation.draw = instance.animation.crawl.img[1]
-   instance.facingRight = true
+   instance.facingRight = false
    instance.physics = {}
    instance.physics.body = love.physics.newBody(World, instance.x, instance.y, "dynamic")
    instance.physics.body:setFixedRotation(true)
@@ -38,29 +39,30 @@ function Enemy.new(x,y)
    table.insert(ActiveEnemies, instance)
 end
 
-function Enemy.loadAssets()
-    Enemy.crawlAnim = {}
+function Enemy_3.loadAssets()
+    Enemy_3.crawlAnim = {}
     for i=1,4 do
-        Enemy.crawlAnim[i] = love.graphics.newImage("Game/sprites/enemy/crawl/"..i..".png")
+        Enemy_3.crawlAnim[i] = love.graphics.newImage("Game/sprites/enemy/crawl/"..i..".png")
     end
 
-    Enemy.width = Enemy.crawlAnim[1]:getWidth()
-    Enemy.height = Enemy.crawlAnim[1]:getHeight()
+    Enemy_3.width = Enemy_3.crawlAnim[1]:getWidth()
+    Enemy_3.height = Enemy_3.crawlAnim[1]:getHeight()
 
 end
 
-function Enemy:update(dt)
+function Enemy_3:update(dt)
    self:animate(dt)
    self:syncPhysics()
-   self:changeDirection()
+   self:changeDirection(dt)
+   
 end
 
-function Enemy:flipDirection()
+function Enemy_3:flipDirection()
    self.facingRight = not self.facingRight
    self.xVel = -self.xVel
  end
 
-function Enemy:animate(dt)
+function Enemy_3:animate(dt)
    self.animation.timer = self.animation.timer + dt
    if self.animation.timer > self.animation.rate then
       self.animation.timer = 0
@@ -68,7 +70,7 @@ function Enemy:animate(dt)
    end
 end
 
-function Enemy:setNewFrame()
+function Enemy_3:setNewFrame()
    local anim = self.animation[self.state]
    if anim.current < anim.total then
       anim.current = anim.current + 1
@@ -78,12 +80,12 @@ function Enemy:setNewFrame()
    self.animation.draw = anim.img[anim.current]
 end
 
-function Enemy:syncPhysics()
+function Enemy_3:syncPhysics()
    self.x, self.y = self.physics.body:getPosition()
    self.physics.body:setLinearVelocity(self.xVel , 100)
 end
 
-function Enemy:draw()
+function Enemy_3:draw()
    local scaleX = 1
    if self.xVel < 0 then
       scaleX = -1
@@ -91,19 +93,19 @@ function Enemy:draw()
    love.graphics.draw(self.animation.draw, self.x, self.y-15, self.r, 2*scaleX, 2, self.width / 2, self.height / 2)
 end
 
-function Enemy.updateAll(dt)
+function Enemy_3.updateAll(dt)
    for i,instance in ipairs(ActiveEnemies) do
       instance:update(dt)
    end
 end
 
-function Enemy.drawAll()
+function Enemy_3.drawAll()
    for i,instance in ipairs(ActiveEnemies) do
       instance:draw()
    end
 end
 
-function Enemy.beginContact(a, b, collision)
+function Enemy_3.beginContact(a, b, collision)
    local playerFixture = Player.physics.fixture
    for i,instance in ipairs(ActiveEnemies) do
       if (a == instance.physics.fixture and b == playerFixture) or (a == playerFixture and b == instance.physics.fixture) then
@@ -112,13 +114,11 @@ function Enemy.beginContact(a, b, collision)
    end
 end
 
-function Enemy:changeDirection()
-   local enemyX, enemyY = self.physics.body:getPosition()
-   if enemyX >= 820 and self.facingRight then
+function Enemy_3:changeDirection(dt)
+   self.directionTimer = self.directionTimer + dt
+   if self.directionTimer >= 3 then
       self:flipDirection()
-   elseif enemyX <=600 and not self.facingRight then
-      self:flipDirection()
+      self.directionTimer = 0
    end
 end
-
-return Enemy
+return Enemy_3
