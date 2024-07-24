@@ -7,13 +7,11 @@ local Enemy_4= require ("Game/enemy/enemy_4")
 
 function love.load()
     background = love.graphics.newImage("assets/background.jpg")
-    font = love.graphics.newFont(24)
+    font = love.graphics.newFont(44)
     boardBackground = love.graphics.newImage("assets/brick_wall.jpg")
 
     boardColor = {1, 0.84, 0}
-    -- Placeholder scores
-    highScore = 100
-    yourScore = 75
+    yourScore = Player.coins
 
     playAgainButton = {
         x = love.graphics.getWidth() / 2 - 175,
@@ -31,7 +29,6 @@ function love.load()
 end
 
 function love.update(dt)
-    -- No update logic needed for the scoreboard
 end
 
 function love.draw()
@@ -48,13 +45,14 @@ function love.draw()
 
     love.graphics.setColor(0, 0, 0) 
     love.graphics.setFont(font)
-    love.graphics.printf("High Score: " .. highScore, 0, love.graphics.getHeight() / 3, love.graphics.getWidth(), "center")
-    love.graphics.printf("Your Score: " .. yourScore, 0, love.graphics.getHeight() / 2.5, love.graphics.getWidth(), "center")
+    love.graphics.printf("Your Score: " .. yourScore, 0, love.graphics.getHeight() / 3, love.graphics.getWidth(), "center")
 
 
     love.graphics.setColor(0.4, 0.4, 1)  
     love.graphics.rectangle("fill", playAgainButton.x, playAgainButton.y, playAgainButton.width, playAgainButton.height)
     love.graphics.setColor(1, 1, 1) 
+    font2 = love.graphics.newFont(24)
+    love.graphics.setFont(font2)
     love.graphics.printf("PLAY AGAIN", playAgainButton.x, playAgainButton.y + 15, playAgainButton.width, "center")
 
     love.graphics.setColor(0.4, 0.4, 1)
