@@ -19,7 +19,7 @@ function Enemy_2.new(x,y)
    instance.x = x
    instance.y = y
    instance.r = 0
-   instance.speed = 50
+   instance.speed = 0
    instance.xVel = instance.speed
    instance.damage = 1
    instance.directionTimer = 0
@@ -51,9 +51,9 @@ function Enemy_2.loadAssets()
 end
 
 function Enemy_2:update(dt)
-   --self:animate(dt)
+   self:animate(dt)
    self:syncPhysics()
-   --self:changeDirection(dt)
+   self:changeDirection(dt)
    
 end
 
