@@ -1,4 +1,4 @@
-local Enemy_2 = {}
+Enemy_2 = {}
 Enemy_2.__index = Enemy_2
 local Player = require("Game.player")
 

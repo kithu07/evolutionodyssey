@@ -53,6 +53,15 @@ function Coin.drawAll()
     end
 end
 
+function Coin.removeAll()
+    for i,v in ipairs(CollectableCoins) do
+       v.physics.body:destroy()
+    end
+ 
+    CollectableCoins = {}
+ end
+ 
+
 function Coin.beginContact(a,b,collision)
     for i, instance in ipairs(CollectableCoins) do
         if a==instance.physics.fixture or b== instance.physics.fixture then
@@ -74,3 +83,5 @@ function Coin: collect()
         end
     end
 end
+
+return Coin

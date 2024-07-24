@@ -1,4 +1,9 @@
 -- main.lua
+local Coin= require ("Game/coin")
+local Enemy_1= require ("Game/enemy/enemy_1")
+local enemy_2= require ("Game/enemy/enemy_2")
+local Enemy_3= require ("Game/enemy/enemy_3")
+local Enemy_4= require ("Game/enemy/enemy_4")
 
 function love.load()
     background = love.graphics.newImage("assets/background.jpg")
@@ -61,9 +66,20 @@ end
 function love.mousepressed(x, y, button, istouch, presses)
     if button == 1 and x >= playAgainButton.x and x <= playAgainButton.x + playAgainButton.width and
        y >= playAgainButton.y and y <= playAgainButton.y + playAgainButton.height then
+        Coin.removeAll()
+        Enemy_1.removeAll()
+        Enemy_2.removeAll()
+        Enemy_3.removeAll()
+        Enemy_4.removeAll()
         goToGamePage()
         
     elseif x >= homeButton.x and x <= homeButton.x + homeButton.width and y >= homeButton.y and y <= homeButton.y + homeButton.height then
+        Coin.removeAll()
+        Enemy_1.removeAll()
+        Enemy_2.removeAll()
+        Enemy_3.removeAll()
+        Enemy_4.removeAll()
+        backgroundMusic:stop()
         goToHomePage()
     end
 end
