@@ -1,4 +1,4 @@
-Player = {}
+local Player = {}
 
 function Player:load()
    self.x = 100
@@ -72,7 +72,7 @@ function Player:takeDamage(amount)
 end
    
 function Player:respawn()
-   if self.alive==false then
+   if self.alive==false or Player.x >=4750 then
       self.physics.body:setPosition(self.startX, self.startY)
       self.health.current = self.health.max
       self.alive = true

@@ -1,5 +1,6 @@
 _G.love = require("love")
-Coin = {}
+local Player = require ("Game.player")
+local Coin = {}
 Coin.__index = Coin
 
 CollectableCoins={}

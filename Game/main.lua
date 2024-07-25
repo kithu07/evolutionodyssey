@@ -1,14 +1,14 @@
 _G.love = require("love")
 local STI = require("Game.libraries/sti")
-require ("Game.player")
-require("Game.coin")
+local player = require ("Game.player")
+local Coin = require("Game.coin")
 love.graphics.setDefaultFilter("nearest", "nearest")
-require("Game.gui")
-local Camera=require ("Game.camera")
-local Enemy_1=require ("Game/enemy/enemy_1")
-local Enemy_2=require ("Game/enemy/enemy_2")
-local Enemy_3=require ("Game/enemy/enemy_3")
-local Enemy_4=require ("Game/enemy/enemy_4")
+local GUI = require("Game.gui")
+local Camera = require ("Game.camera")
+local Enemy_1 = require ("Game/enemy/enemy_1")
+local Enemy_2 = require ("Game/enemy/enemy_2")
+local Enemy_3 = require ("Game/enemy/enemy_3")
+local Enemy_4 = require ("Game/enemy/enemy_4")
 
 function love.load()
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
@@ -20,7 +20,7 @@ function love.load()
     Map.layers.entity.visible = false
     MapWidth = Map.layers.elements.width  * 16
     love.graphics.setBackgroundColor(0, 0.5, 0.5)
-    Player:load()
+    player:load()
     Enemy_1.loadAssets()
     Enemy_2.loadAssets()
     Enemy_3.loadAssets()
@@ -64,31 +64,31 @@ end
 
 function love.update(dt)
     World:update(dt)
-    Player:update(dt)
+    player:update(dt)
     Coin: updateAll(dt)
     Enemy_1.updateAll(dt)
     Enemy_2.updateAll(dt)
     Enemy_3.updateAll(dt)
     Enemy_4.updateAll(dt)
     GUI:update(dt)
-    Camera:setPosition(Player.x, 0)
+    Camera:setPosition(player.x, 0)
 end
 
 function love.draw()
     Map:draw(-Camera.x, -Camera.y, Camera.scale, Camera.scale)
     Camera:apply()   
-    Player:draw()
+    player:draw()
     Coin: drawAll()
     Enemy_1.drawAll()
     Enemy_2.drawAll()
     Enemy_3.drawAll()
     Enemy_4.drawAll()
-    GUI:draw()
     Camera:clear()
+    GUI:draw()
 end
 
 function love.keypressed(key)
-    Player:jump(key)
+    player:jump(key)
 end
 
 function beginContact(a, b, collision)
@@ -97,10 +97,10 @@ function beginContact(a, b, collision)
     Enemy_2.beginContact(a, b, collision)
     Enemy_3.beginContact(a, b, collision)
     Enemy_4.beginContact(a, b, collision)
-    Player:beginContact(a, b, collision)
+    player:beginContact(a, b, collision)
 end
 
 function endContact(a, b, collision)
-    Player:endContact(a, b, collision)
+    player:endContact(a, b, collision)
 end
 

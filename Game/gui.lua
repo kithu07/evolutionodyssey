@@ -1,4 +1,5 @@
-GUI = {}
+local GUI = {}
+local Player = require("Game.player")
 
 function GUI:load()
    self.coins = {}
@@ -21,13 +22,15 @@ function GUI:load()
 
 end
 
-function GUI:update()
+function GUI:update(dt)
     
 end
 
 function GUI:draw()
     self:displayCoins()
     self:displayHearts()
+    
+  
 end
 
 function GUI:displayCoins()
@@ -42,4 +45,6 @@ function GUI:displayHearts()
        
        love.graphics.draw(self.hearts.img, x, self.hearts.y, 0, self.hearts.scale, self.hearts.scale)
     end
- end
+end
+
+return GUI

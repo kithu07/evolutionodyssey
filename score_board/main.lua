@@ -1,4 +1,5 @@
 -- main.lua
+local Player = require("Game.player")
 local Coin= require ("Game/coin")
 local Enemy_1= require ("Game/enemy/enemy_1")
 local enemy_2= require ("Game/enemy/enemy_2")
@@ -11,8 +12,9 @@ function love.load()
     boardBackground = love.graphics.newImage("assets/brick_wall.jpg")
 
     boardColor = {1, 0.84, 0}
-    yourScore = Player.coins
-
+    Mapwidth = 4800
+    yourScore = 0
+    
     playAgainButton = {
         x = love.graphics.getWidth() / 2 - 175,
         y = love.graphics.getHeight()/ 1.33 - 150,
@@ -29,6 +31,7 @@ function love.load()
 end
 
 function love.update(dt)
+    yourScore = calculateScore()
 end
 
 function love.draw()
@@ -45,7 +48,7 @@ function love.draw()
 
     love.graphics.setColor(0, 0, 0) 
     love.graphics.setFont(font)
-    love.graphics.printf("Your Score: " .. yourScore, 0, love.graphics.getHeight() / 3, love.graphics.getWidth(), "center")
+    love.graphics.printf("Your Score: " ..  yourScore, 0, love.graphics.getHeight() / 3, love.graphics.getWidth(), "center")
 
 
     love.graphics.setColor(0.4, 0.4, 1)  
@@ -80,4 +83,10 @@ function love.mousepressed(x, y, button, istouch, presses)
         backgroundMusic:stop()
         goToHomePage()
     end
+end
+
+function calculateScore()
+    yourScore = (Player.coins * 100)
+   
+    return yourScore
 end
