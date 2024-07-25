@@ -1,28 +1,30 @@
 
 ## Contributors
 
-# Keerthana DS
-- **Responsibilities:**
-  - Score and Life Tracker
-  - Music and Sounds
-
-# Devika
-- **Responsibilities:**
-  - Element Assets
-  - Animation
-
-# Keerthana AR
-- **Responsibilities:**
-  - Background
-  - Obstruction Detection and Handling
-
 # Janeeta
 - **Responsibilities:**
-  - Home Page
-  - Panel Bar
-  - Score Board
+  - Platform
+  - Character motion
+  - Presentations
 
 # Niranjana
 - **Responsibilities:**
-  - Handle Physics Module Operation
+  - Character animations
+  - Enemies 
+  - Life system
+  - Camera
+
+# Keerthana DS
+- **Responsibilities:**
+  - Scoreboard
+  - Home page
+  - Main file
   
+# Devika
+- **Responsibilities:**
+  - Coins
+
+# Keerthana AR
+- **Responsibilities:**
+  - Water collision detection
+
