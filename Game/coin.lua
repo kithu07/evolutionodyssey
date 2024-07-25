@@ -1,5 +1,6 @@
 _G.love = require("love")
 local Player = require ("Game.player")
+local coinSound = love.audio.newSource("assets/coin_sound.wav", "stream")
 local Coin = {}
 Coin.__index = Coin
 
@@ -79,6 +80,7 @@ function Coin: collect()
         if instance == self then
             Player: incrementCoins()
             print(Player.coins)
+            love.audio.play(coinSound)
             self.physics.body:destroy()
             table.remove(CollectableCoins, i)
         end
